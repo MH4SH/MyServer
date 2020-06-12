@@ -1,15 +1,24 @@
 {
   "name": "backend_pm2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "src/server.ts",
   "repository": "git@github.com:marconwillian/Pm2Panel_backend.git",
   "author": "Marcon Willian <marconwillian@protonmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "node index.ts"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "pm2": "^4.4.0",
+    "shelljs": "^0.8.4",
     "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "typescript": "^3.9.5"
   }
 }
