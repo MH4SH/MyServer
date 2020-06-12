@@ -2,17 +2,17 @@
 
 import express from 'express';
 import cors from 'cors';
+require('custom-env').env('dev');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-import routes from './routes';
+import routes from './Routes';
+routes(app)
 
-app.use(routes);
-
-export default (port) => {
+export default (port: number) => {
     return app.listen(port, function listener(err) {
             if (err) return console.error('Could not start HTTP server:', err);
             console.log(`HTTP server is listening on ${port}`);
