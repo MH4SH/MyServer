@@ -1,6 +1,6 @@
 import {Express} from 'express';
-import ListController from './../constrollers/ListController';
-import PullController from './../constrollers/PullController';
+import ListController from '../controllers/ListController';
+import PullController from '../controllers/PullController';
 import UserRoute from './UserRoute';
 
 

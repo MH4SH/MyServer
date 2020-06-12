@@ -1,7 +1,7 @@
 import express from 'express';
 const routes = express.Router();
 
-import UserController from '../constrollers/UserController';
+import UserController from '../controllers/UserController';
 
 routes.get('/', UserController.index);
 routes.post('/authenticate', UserController.auth);
