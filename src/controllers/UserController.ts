@@ -1,11 +1,21 @@
 import {Request, Response} from 'express';
+import {RequestAuth} from '../middlewares/auth';
 import bcrypt from 'bcryptjs';
 import connection from '../database/connection';
 import generateToken from '../utils/generateToken';
 
 const UserController = {
-    index: (req: Request, res: Response) => {
-        res.status(200).json({oi: 0})
+    index: async (req: RequestAuth, res: Response) => {
+        try {
+            if(req._userType!=='1')
+                return res.status(403).json({statusCode: 403, error: "Forbidden", message: "access denied"});
+    
+            const users = await connection('users');
+    
+            return res.status(200).json(users)
+        } catch (err) {
+            return res.status(400).json({statusCode: 400, error: 'Bad Request', message: err.message});
+        }
     },
     register: async (req: Request, res: Response) => {
         const body = req.body,
