@@ -1,6 +1,6 @@
 {
   "name": "backend_pm2",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "main": "src/server.ts",
   "repository": "git@github.com:marconwillian/Pm2Panel_backend.git",
   "author": "Marcon Willian <marconwillian@protonmail.com>",
@@ -9,6 +9,7 @@
     "dev": "ts-node-dev index.ts"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.1",
     "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

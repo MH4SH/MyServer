@@ -5,6 +5,7 @@ declare global {
             PORT?: string;
             PWD: string;
             HASH_1_SECRET: string;
+            SENDGRID_API_KEY: string;
         }
     }
 }
