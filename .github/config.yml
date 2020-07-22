@@ -1,0 +1,7 @@
+todo:
+  keyword: ["@todo", "TODO"]
+  bodyKeyword: ["@body", "BODY"]
+  blobLines: 5
+  autoAssign: true
+  label: true
+  reopenClosed: true

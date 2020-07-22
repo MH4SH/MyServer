@@ -25,8 +25,8 @@ const UserController = {
                     return res.status(400).json({statusCode: 400, error: "Bad Request", message: "\"user\" already in use", validation: { source: "body", keys: [ "user"]}})
 
                 body.password = await bcrypt.hash(body.password, 10);
-
-                const [id] = await connection('users')
+                let id: StringConstructor;
+                [id] = await connection('users')
                 .insert({...body, type: 2});
 
                 body.password = undefined;

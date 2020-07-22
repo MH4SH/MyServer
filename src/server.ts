@@ -17,6 +17,6 @@ const port = process.env.PORT || 4404;
 
 export default () => { 
     app.listen(port, () => {
-        console.log(`HTTP server is listening on ${port}`);
+        console.log(`HTTP server is listening on :${port}`);
     });
 }
