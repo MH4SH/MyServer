@@ -6,10 +6,10 @@ shell.exec('yarn add sms');
 /**
  * 
  * @todo List thinks that need finish todos
- * @body  - [ ]  User
- * @body    - [ ]  Create User
- * @body    - [ ]  List Users
- * @body    - [ ]  Auth Users
+ * @body  - [x]  User
+ * @body    - [x]  Create User
+ * @body    - [x]  List Users
+ * @body    - [x]  Auth Users
  * @body    - [ ]  Get Data User
  * @body - [ ]  List Services and Save id for name
  * @body     - [ ]  Stop Service
