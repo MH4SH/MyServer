@@ -1,4 +1,6 @@
 import {Express} from 'express';
+import {errors} from 'celebrate';
+
 import ListController from '../controllers/ListController';
 import PullController from '../controllers/PullController';
 
@@ -10,4 +12,6 @@ export default (app: Express) => {
     app.use('/list', ListController.index);
     app.use('/pull', PullController.index);
 
+
+    app.use(errors());
 };

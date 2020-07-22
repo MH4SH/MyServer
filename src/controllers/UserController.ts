@@ -7,11 +7,12 @@ import generateToken from '../utils/generateToken';
 import generateNumberCode from '../utils/generateNumberCode';
 import SendEmail from '../utils/sendEmail';
 
+import { authorizationUserIsAdmin } from '../utils/verifyUserAuthenticate'
+
 const UserController = {
     index: async (req: RequestAuth, res: Response) => {
         try {
-            if(req._userAuthenticate && req._userAuthenticate.type!=='1')
-                return res.status(403).json({statusCode: 403, error: "Forbidden", message: "access denied"});
+            authorizationUserIsAdmin(req, res);
     
             const users = await connection('users');
     
@@ -107,7 +108,43 @@ const UserController = {
         }
     },
     setNewPassword: async (req: Request, res: Response) => {
+        const { token, code, password } = req.body;
 
+        try {
+            let resetPassword = await connection('resetPassword')
+                .where({token})
+                .first();
+
+            if(!await bcrypt.compare(`${code}`, resetPassword.code))
+                return res.status(403).json({statusCode: 403, error: "Forbidden", message: "Wrong code", validation: { source: "body", keys: [ "code"]}})
+						
+            let hash = await bcrypt.hash(password, 10);
+
+            let trx = await connection.transaction();
+
+            await trx('user')
+            .where('id', resetPassword.idUser)
+            .update({
+                password: hash
+            });
+
+            const userContent = await trx('user')
+                .where('id', resetPassword.idUser)
+                .first();
+
+            
+            await trx('resetPassword')
+                .where('idUser', resetPassword.idUser)
+                .delete();
+            
+            await trx.commit();
+
+            delete userContent.password;
+
+            res.status(200).json({user: {...userContent}, token: generateToken({id: userContent.id, user: userContent.user, type: userContent.type})});
+        } catch (err) {
+			return res.status(400).json({statusCode: 400, error: 'Bad Request', message: err.message})
+        }
     }
 }
 
