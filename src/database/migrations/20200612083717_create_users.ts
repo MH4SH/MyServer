@@ -8,7 +8,7 @@ export async function up(knex: Knex): Promise<any> {
         table.string('password').notNullable();
         table.string('email').notNullable();
         table.string('name').notNullable();
-        table.enum('type', [1, 2]).defaultTo(1).comment('1: Admin, 2: Moderador');
+        table.enum('type', ['1', '2', '3']).defaultTo('3').comment('1: Admin, 2: Moderador, 3: Pendent User');
     })
 }
 
